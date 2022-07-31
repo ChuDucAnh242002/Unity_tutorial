@@ -4,7 +4,7 @@ using UnityEngine;
 
 public class SwordAttack : MonoBehaviour
 {
-    [SerializeField] private float damage = 3;
+    [SerializeField] private float damage;
     private BoxCollider2D swordCollider;
     private Vector2 rightAttackOffset;
 

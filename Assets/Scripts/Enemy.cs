@@ -18,6 +18,8 @@ public class Enemy : MonoBehaviour
             if (health <= 0){
                 Defeated();
             }
+            
+            animator.SetTrigger("Damaged");
         }
     }
     

@@ -7,6 +7,7 @@ public class PlayerController : MonoBehaviour
 {
 
     [SerializeField] private float moveSpeed;
+    [SerializeField] private float diagonalSpeed;
     [SerializeField] private float collisionOffset;
     [SerializeField] private ContactFilter2D movementFilter;
     [SerializeField] private SwordAttack swordAttack;
@@ -32,49 +33,48 @@ public class PlayerController : MonoBehaviour
             Move();
             FlipMove();
         }
-
     }
 
-    private void TryMove(Vector2 direction){
-        if (direction != Vector2.zero){
+    private void TryMove(float speed){
 
-            // return 0 and 1
-            int count = rb.Cast(
-                movementInput,
-                movementFilter, 
-                castCollisions, 
-                moveSpeed * Time.fixedDeltaTime + collisionOffset);
+        // return 0 and 1
+        int count = rb.Cast(
+            movementInput,
+            movementFilter, 
+            castCollisions, 
+            moveSpeed * Time.fixedDeltaTime + collisionOffset);
 
-            // Success move
-            if(count == 0){
-                // Param new position
-                rb.MovePosition(rb.position + movementInput * moveSpeed * Time.fixedDeltaTime);
-                return;
-            }
-            
+        // Success move
+        if(count == 0){
+            // Param new position
+            rb.MovePosition(rb.position + movementInput * speed * Time.fixedDeltaTime);
+            return;
         }
     }
 
     private void Move(){
         if(movementInput != Vector2.zero){
-
-            TryMove(new Vector2(movementInput.x, 0));
-            TryMove(new Vector2(0, movementInput.y));
-
+            if (movementInput.x != 0 && movementInput.y != 0){
+                TryMove(diagonalSpeed);
+            }
+            else {
+                TryMove(moveSpeed);
+            }
             animator.SetBool("isMoving", true);
         }
         else{
+            rb.velocity = new Vector2(0f, 0f);
             animator.SetBool("isMoving", false);
         }
     }
 
     private void FlipMove(){
-            if(movementInput.x < 0){
-                spriteRenderer.flipX = true;
-            } 
-            else if (movementInput.x > 0){
-                spriteRenderer.flipX = false;
-            }
+        if(movementInput.x < 0){
+            spriteRenderer.flipX = true;
+        } 
+        else if (movementInput.x > 0){
+            spriteRenderer.flipX = false;
+        }
     }
 
     // Press move
@@ -84,7 +84,6 @@ public class PlayerController : MonoBehaviour
 
     // Mouse button
     void OnAttack(){
-
         animator.SetTrigger("swordAttack");
         SwordAttack();
     }
@@ -110,4 +109,10 @@ public class PlayerController : MonoBehaviour
     public void UnlockMovement(){
         canMove = true; 
     }
+
+    // public void OnCollisionEnter2D(Collider2D other){
+    //     if(other.tag == "Enemy"){
+    //         Health -= damage;
+    //     }
+    // }
 }
