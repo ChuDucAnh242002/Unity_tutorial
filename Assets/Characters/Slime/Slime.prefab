@@ -123,8 +123,8 @@ CapsuleCollider2D:
   m_IsTrigger: 1
   m_UsedByEffector: 0
   m_UsedByComposite: 0
-  m_Offset: {x: 0, y: -0.011947632}
-  m_Size: {x: 0.12108408, y: 0.12389527}
+  m_Offset: {x: -0.0027426481, y: -0.016061619}
+  m_Size: {x: 0.121084094, y: 0.121084124}
   m_Direction: 0
 --- !u!114 &7516725546595239698
 MonoBehaviour:
@@ -151,7 +151,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 5e7aca92e1960384bb13f2ef3b7b8c94, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  player: {fileID: 0}
+  player: {fileID: 8853981666835105317, guid: 53d4a304942f8c54ab0838a50d285c87, type: 3}
   moveSpeed: 0.3
   ChaseRange: 0.8
 --- !u!95 &6881825777913731408

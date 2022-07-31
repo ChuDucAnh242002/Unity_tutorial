@@ -11,6 +11,10 @@ public class PlayerController : MonoBehaviour
     [SerializeField] private float collisionOffset;
     [SerializeField] private ContactFilter2D movementFilter;
     [SerializeField] private SwordAttack swordAttack;
+    // [SerializeField] private PlayerHitBox hitbox;
+    [SerializeField] private Transform spawnpoint;
+
+    // [SerializeField] private Collider2D enemycollider;
     
     private Vector2 movementInput;
     private Rigidbody2D rb;
@@ -33,6 +37,10 @@ public class PlayerController : MonoBehaviour
             Move();
             FlipMove();
         }
+        // if(hitbox.OnCollisionEnter2D()){
+        //     animator.SetTrigger("Die");
+        // }
+        
     }
 
     private void TryMove(float speed){
@@ -110,9 +118,7 @@ public class PlayerController : MonoBehaviour
         canMove = true; 
     }
 
-    // public void OnCollisionEnter2D(Collider2D other){
-    //     if(other.tag == "Enemy"){
-    //         Health -= damage;
-    //     }
-    // }
+    public void Respawn(){
+        transform.localPosition = spawnpoint.position;
+    }
 }
