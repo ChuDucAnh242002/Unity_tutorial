@@ -72,7 +72,6 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   damage: 3
-  swordCollider: {fileID: 0}
 --- !u!1 &7475424289331832332
 GameObject:
   m_ObjectHideFlags: 0

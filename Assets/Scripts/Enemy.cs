@@ -4,10 +4,14 @@ using UnityEngine;
 
 public class Enemy : MonoBehaviour
 {
-
+    [SerializeField] private float health;
     Animator animator;
 
+    // Like a function
     public float Health {
+        get {
+            return health;
+        }
         set {
             health = value;
 
@@ -15,16 +19,8 @@ public class Enemy : MonoBehaviour
                 Defeated();
             }
         }
-        get {
-            return health;
-        }
     }
-    public float health = 10;
-
-    // public void TakeDamage(float damage){
-    //     health -= damage;
-    // }
-
+    
     public void Start(){
         animator = GetComponent<Animator>();
     }

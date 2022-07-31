@@ -4,30 +4,14 @@ using UnityEngine;
 
 public class SwordAttack : MonoBehaviour
 {
-    // public enum AttackDirection{
-    //     left, right
-    // }
-
-    // public AttackDirection attackDirection;
-    public float damage = 3;
+    [SerializeField] private float damage = 3;
+    private BoxCollider2D swordCollider;
     private Vector2 rightAttackOffset;
-    public Collider2D swordCollider;
 
     private void Start(){
-        // swordCollider = GetComponent<Collider2D>();
+        swordCollider = GetComponent<BoxCollider2D>();
         rightAttackOffset = transform.position;
     }
-
-    // public void Attack(){
-    //     switch(attackDirection){
-    //         case AttackDirection.left:
-    //             AttackLeft();
-    //             break;
-    //         case AttackDirection.right:
-    //             AttackRight();
-    //             break;
-    //     }
-    // }
 
     public void AttackRight() {
         swordCollider.enabled = true;
